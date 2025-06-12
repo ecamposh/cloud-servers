@@ -31,10 +31,17 @@ for file in /etc/yum.repos.d/*.repo; do
 done
 
 # Step 2: Create CentOS Vault repository configuration
-echo "Configuring CentOS Vault repositories in $VAULT_REPO_FILE"
+echo "Configuring CentOS Vault repositories in $VAULT_REPO_BASE"
 cat > "$VAULT_REPO_FILE" << 'EOF'
 [base]
 name=CentOS-7 - Base - Vault
+baseurl=http://vault.centos.org/7.9.2009/os/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+enabled=1
+
+[os]
+name=CentOS-7 - OS - Vault
 baseurl=http://vault.centos.org/7.9.2009/os/$basearch/
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
@@ -57,6 +64,20 @@ enabled=1
 [centosplus]
 name=CentOS-7 - Plus - Vault
 baseurl=http://vault.centos.org/7.9.2009/centosplus/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+enabled=0
+
+[fasttrack]
+name=CentOS-7 - Fasttrack - Vault
+baseurl=http://vault.centos.org/7.9.2009/fasttrack/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+enabled=0
+
+[rt]
+name=CentOS-7 - Realtime - Vault
+baseurl=http://vault.centos.org/7.9.2009/rt/$basearch/
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 enabled=0
