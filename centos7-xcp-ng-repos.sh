@@ -156,11 +156,18 @@ EOF
 echo "XCP-ng repositories have been added to /etc/yum.repos.d/xcp-ng.repo"
 
 echo "Download and Import XCP-NG key"
-#curl -o /etc/pki/rpm-gpg/RPM-GPG-KEY-xcpng https://xcp-ng.org/RPM-GPG-KEY-xcpng
+# curl -o /etc/pki/rpm-gpg/RPM-GPG-KEY-xcpng https://xcp-ng.org/RPM-GPG-KEY-xcpng
 curl -O https://xcp-ng.org/RPM-GPG-KEY-xcpng
 rpm --import RPM-GPG-KEY-xcpng
-#gpg --quiet --with-fingerprint /etc/pki/rpm-gpg/RPM-GPG-KEY-xcpng
-#rpm --rebuilddb
+# rpm --import https://xcp-ng.org/RPM-GPG-KEY-xcpng
+# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-xcpng
+# gpg --quiet --with-fingerprint /etc/pki/rpm-gpg/RPM-GPG-KEY-xcpng
+# rpm --rebuilddb
+
+# echo "Cleaning"
+# yum clean all
+# rm -rf /var/cache/yum/*
+# yum makecache
 
 echo "Install Xen-Tools"
 yum repolist
