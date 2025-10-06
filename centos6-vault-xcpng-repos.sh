@@ -61,13 +61,13 @@ gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 enabled=1
 
-[virt]
-name=CentOS-6 - Virt - Vault
-baseurl=http://vault.centos.org/6.10/virt/$basearch/xen-410
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
-# gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
-enabled=1
+#[virt]
+#name=CentOS-6 - Virt - Vault
+#baseurl=http://vault.centos.org/6.10/virt/$basearch/xen-410
+#gpgcheck=1
+#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
+#enabled=0
 
 [centosplus]
 name=CentOS-6 - Plus - Vault
@@ -89,27 +89,6 @@ baseurl=http://vault.centos.org/6.10/rt/$basearch/
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 enabled=0
-EOF
-
-echo "Download and Install XCP-NG Key"
-curl -O https://xcp-ng.org/RPM-GPG-KEY-xcpng
-rpm --import RPM-GPG-KEY-xcpng
-
-echo "Create repository for xcp-ng"
-cat << 'EOF' > /etc/yum.repos.d/xcp-ng.repo
-[xcp-ng-base]
-name=XCP-ng Base Repository
-baseurl=https://updates.xcp-ng.org/7/7.6/base/x86_64/
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-xcpng
-
-[xcp-ng-updates]
-name=XCP-ng Updates Repository
-baseurl=https://updates.xcp-ng.org/7/7.6/updates/x86_64/
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-xcpng
 EOF
 
 # Step 3: Clean Yum cache
