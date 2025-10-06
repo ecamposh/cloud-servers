@@ -41,7 +41,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-xcpng
 
 [xcp-ng-updates]
 name=XCP-ng Updates Repository
-baseurl=https://updates.xcp-ng.org/7/7.6/updates/x86_64/
+baseurl=https://updates.xcp-ng.org/8/8.3/updates/x86_64/
 enabled=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-xcpng
