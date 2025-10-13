@@ -45,3 +45,11 @@ adduser alpine-user wheel
 nano /etc/doas.d/20-wheel.conf
 
 nano /etc/cloud/cloud.cfg
+
+
+
+https://timmydouglas.com/2019/12/29/cloud-init.html
+https://wiki.creatica.org/cgi-bin/wiki.pl/How_to_create_alpine_linux_cloud_image
+https://wiki.archlinux.org/title/Doas
+https://itsfoss.com/alpine-linux-virtualbox/
+
