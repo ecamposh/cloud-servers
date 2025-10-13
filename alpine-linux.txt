@@ -1,0 +1,47 @@
+root
+
+setup-alpine
+
+us
+
+us
+
+localhost
+
+eth0
+
+dhcp
+
+UTC
+
+chrony
+
+option f
+
+alpine-user
+
+none ssh
+
+sda
+
+sys
+
+yes
+
+poweroff
+
+remove bootable ISO
+
+apk setuprepos -cf
+
+apk add sudo vim nano curl cloud-init acpi e2fsprogs-extra elogind polkit-elogind
+
+groups alpine-user
+
+or
+
+adduser alpine-user wheel
+
+nano /etc/doas.d/20-wheel.conf
+
+nano /etc/cloud/cloud.cfg
