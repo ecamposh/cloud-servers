@@ -32,7 +32,7 @@ poweroff
 
 remove bootable ISO
 
-apk setuprepos -cf
+setup-apkrepos -cf
 
 apk add sudo cloud-init kubelet kubeadm containerd cni-plugins uuidgen iptables ip6tables
 
