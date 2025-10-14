@@ -46,10 +46,36 @@ nano /etc/doas.d/20-wheel.conf
 
 nano /etc/cloud/cloud.cfg
 
+https://raw.githubusercontent.com/ecamposh/cloud-servers/main/cloud-temp.cfg
+
+setup-cloud-init
+
+poweroff
+
 
 
 https://timmydouglas.com/2019/12/29/cloud-init.html
 https://wiki.creatica.org/cgi-bin/wiki.pl/How_to_create_alpine_linux_cloud_image
 https://wiki.archlinux.org/title/Doas
 https://itsfoss.com/alpine-linux-virtualbox/
+https://www.mirantis.com/cloud-native-concepts/understanding-openstack/how-to-work-with-images-in-openstack/
+https://wiki.archlinux.org/title/Cloud-init
+https://forum.proxmox.com/threads/cloud-init-and-disable_root.48569/
+https://alpinelinux.org/cloud/
+https://gitlab.alpinelinux.org/alpine/cloud/tiny-cloud
+https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html
+https://wiki.alpinelinux.org/wiki/Elogind
+https://wiki.alpinelinux.org/wiki/Polkit
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_atomic_host/7/html/installation_and_configuration_guide/setting_up_cloud_init
+https://docs.openstack.org/nova/latest/user/metadata.html
+https://docs.openstack.org/image-guide/
+https://openstack-alpine-image.readthedocs.io/en/latest/
+https://github.com/antoinemartin/alpine-openstack-vm
+https://doc.opencraft.com/howto-upload-images-to-openstack/
+https://docs.alpinelinux.org/user-handbook/0.1a/Working/post-install.html
+https://docs.openstack.org/nova/rocky/user/metadata-service.html
+https://cloudspinx.com/fix-cloud-init-cannot-access-metadata-on-openstack/
+
+
+
 
