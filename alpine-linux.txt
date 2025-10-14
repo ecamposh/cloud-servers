@@ -34,7 +34,7 @@ remove bootable ISO
 
 apk setuprepos -cf
 
-apk add sudo vim nano curl cloud-init acpi e2fsprogs-extra elogind polkit-elogind
+apk add sudo cloud-init kubelet kubeadm containerd cni-plugins uuidgen iptables ip6tables
 
 groups alpine-user
 
