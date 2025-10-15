@@ -54,7 +54,9 @@ poweroff
 
 
 
+https://wiki.alpinelinux.org/wiki/K8s_with_cloud-init
 https://github.com/red-lichtie/alpine-cloud-init
+https://twdev.blog/2023/11/alpine_cloudinit/
 https://timmydouglas.com/2019/12/29/cloud-init.html
 https://wiki.creatica.org/cgi-bin/wiki.pl/How_to_create_alpine_linux_cloud_image
 https://wiki.archlinux.org/title/Doas
