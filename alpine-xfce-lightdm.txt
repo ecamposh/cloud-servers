@@ -1,0 +1,127 @@
+
+### Enabling community repositories
+
+https://wiki.alpinelinux.org/wiki/Repositories
+
+setup-apkrepos -cf
+
+apk update
+
+apk upgrade
+
+https://pkgs.alpinelinux.org/packages
+
+https://wiki.alpinelinux.org/wiki/Setup-desktop
+
+The Alpine Linux script for quickly setting up a desktop is:
+
+# setup-desktop
+
+On running the above command, you will be prompted to select a desktop environment.
+
+Which desktop environment? ('gnome', 'plasma', 'xfce', 'mate', 'sway', 'lxqt' or 'none') [none]
+
+or
+
+setup-xorg-base
+
+apk add vim nano curl wget git bc net-tools sudo bash alpine-sdk linux-headers make gcc g++ perl yarn nodejs xfce4 xfce4-terminal xfce4-screensaver xfce4-session xfce4-panel lightdm-gtk-greeter dbus
+
+rc-service dbus start
+
+rc-update add dbus
+
+setup-devd udev
+
+rc-service lightdm start
+
+rc-update add lightdm
+
+## Change from GUI mode to text-only mode
+Ctrl + Alt + F1 through F6
+
+startx
+
+### Allow Users to shut down and reboot
+
+apk add elogind polkit-elogind
+
+rc-service polkit start
+
+rc-update add polkit
+
+rc-service elogind start
+
+rc-update add elogind
+
+### Installing virtualbox guest additions
+
+https://wiki.alpinelinux.org/wiki/VirtualBox_shared_folders
+
+apk add --no-cache virtualbox-guest-additions virtualbox-guest-modules-virt virtualbox-guest-additions-x11
+
+rc-service virtualbox-guest-additions start
+
+rc-update add virtualbox-guest-additions boot
+
+rc-service virtualbox-drm-client start
+
+rc-update add virtualbox-drm-client default
+
+reboot
+
+https://wiki.alpinelinux.org/wiki/Shell_management
+
+cat /etc/shells
+
+echo $SHELL
+
+echo $0
+
+Using chsh command
+
+To use chsh command, install the shadow package:
+
+apk add shadow
+
+And use chsh:
+
+chsh username
+
+Now enter the path for the shell you want to use (e.g /bin/zsh) and press Enter to confirm this change. The shell should exist in /etc/shells.
+
+apk add firefox xfce4-goodies
+
+### Installing pyenv and hammertime
+
+apk add --no-cache git bash curl build-base libffi-dev openssl-dev bzip2-dev zlib-dev readline-dev sqlite-dev tk-dev xz-dev expect tcl-dev
+
+expect -v
+
+## Alternative install YAML parser
+apk add --no-cache yq
+pip show pyyaml
+
+curl https://pyenv.run | bash
+
+nano ~/.bashrc
+
+export PATH="~/.pyenv/bin:$PATH" 
+eval "$(pyenv init -)" 
+eval "$(pyenv virtualenv-init -)"
+
+source ~/.bashrc
+
+exec $SHELL
+
+pyenv --version
+
+pyenv install 3.10.12
+
+pyenv virtualenv 3.10.12 hammertime-venv
+
+pyenv activate hammertime-venv
+
+pip install --index-url=https://artifacts.rackspace.net/artifactory/api/pypi/pypi/simple hammertime
+
+
