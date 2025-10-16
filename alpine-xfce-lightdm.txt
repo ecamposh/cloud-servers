@@ -27,6 +27,10 @@ setup-xorg-base
 
 apk add vim nano curl wget git bc net-tools sudo bash alpine-sdk linux-headers make gcc g++ perl yarn nodejs xfce4 xfce4-terminal xfce4-screensaver xfce4-session xfce4-panel lightdm-gtk-greeter dbus
 
+https://wiki.alpinelinux.org/wiki/Setting_up_a_new_user
+https://wiki.archlinux.org/title/Doas
+https://docs.alpinelinux.org/user-handbook/0.1a/Working/post-install.html
+
 sudo visudo
 
 rc-service dbus start
@@ -45,6 +49,9 @@ Ctrl + Alt + F1 through F6
 startx
 
 ### Allow Users to shut down and reboot
+
+https://wiki.alpinelinux.org/wiki/Elogind
+https://wiki.alpinelinux.org/wiki/Polkit
 
 apk add elogind polkit-elogind
 
