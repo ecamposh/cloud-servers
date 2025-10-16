@@ -15,7 +15,7 @@ https://wiki.alpinelinux.org/wiki/Setup-desktop
 
 The Alpine Linux script for quickly setting up a desktop is:
 
-# setup-desktop
+setup-desktop
 
 On running the above command, you will be prompted to select a desktop environment.
 
@@ -26,6 +26,8 @@ or
 setup-xorg-base
 
 apk add vim nano curl wget git bc net-tools sudo bash alpine-sdk linux-headers make gcc g++ perl yarn nodejs xfce4 xfce4-terminal xfce4-screensaver xfce4-session xfce4-panel lightdm-gtk-greeter dbus
+
+sudo visudo
 
 rc-service dbus start
 
@@ -53,6 +55,8 @@ rc-update add polkit
 rc-service elogind start
 
 rc-update add elogind
+
+reboot
 
 ### Installing virtualbox guest additions
 
@@ -90,7 +94,7 @@ chsh username
 
 Now enter the path for the shell you want to use (e.g /bin/zsh) and press Enter to confirm this change. The shell should exist in /etc/shells.
 
-apk add firefox xfce4-goodies
+apk add --no-cache firefox xfce4-goodies xterm terminator alacritty konsole gnome-terminal
 
 ### Installing pyenv and hammertime
 
