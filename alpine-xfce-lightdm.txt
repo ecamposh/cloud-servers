@@ -29,6 +29,7 @@ apk add vim nano curl wget git bc net-tools sudo bash alpine-sdk linux-headers m
 
 https://wiki.alpinelinux.org/wiki/Setting_up_a_new_user
 https://wiki.archlinux.org/title/Doas
+https://wiki.archlinux.org/title/Sudo
 https://docs.alpinelinux.org/user-handbook/0.1a/Working/post-install.html
 
 sudo visudo
