@@ -47,7 +47,9 @@ rc-update add lightdm
 ## Change from GUI mode to text-only mode
 Ctrl + Alt + F1 through F6
 
+## Go back to GUI mode
 startx
+
 
 ### Allow Users to shut down and reboot
 
@@ -66,6 +68,7 @@ rc-update add elogind
 
 reboot
 
+
 ### Installing virtualbox guest additions
 
 https://wiki.alpinelinux.org/wiki/VirtualBox_shared_folders
@@ -81,6 +84,9 @@ rc-service virtualbox-drm-client start
 rc-update add virtualbox-drm-client default
 
 reboot
+
+
+### Changing shell from ash to bash
 
 https://wiki.alpinelinux.org/wiki/Shell_management
 
@@ -104,15 +110,20 @@ Now enter the path for the shell you want to use (e.g /bin/zsh) and press Enter 
 
 apk add --no-cache firefox xfce4-goodies xterm terminator alacritty konsole gnome-terminal
 
+
 ### Installing pyenv
+
+https://realpython.com/intro-to-pyenv/
 
 apk add --no-cache git bash curl build-base libffi-dev openssl-dev bzip2-dev zlib-dev readline-dev sqlite-dev tk-dev xz-dev expect tcl-dev
 
 expect -v
 
-## Alternative install YAML parser
+-----------------------------------------------------------------
+## NOTE: How to install YAML parser
 apk add --no-cache yq
 pip show pyyaml
+-----------------------------------------------------------------
 
 curl https://pyenv.run | bash
 
@@ -124,7 +135,7 @@ eval "$(pyenv virtualenv-init -)"
 
 source ~/.bashrc
 
-exec $SHELL
+exec "$SHELL"
 
 pyenv --version
 
