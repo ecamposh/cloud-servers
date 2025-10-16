@@ -104,7 +104,7 @@ Now enter the path for the shell you want to use (e.g /bin/zsh) and press Enter 
 
 apk add --no-cache firefox xfce4-goodies xterm terminator alacritty konsole gnome-terminal
 
-### Installing pyenv and hammertime
+### Installing pyenv
 
 apk add --no-cache git bash curl build-base libffi-dev openssl-dev bzip2-dev zlib-dev readline-dev sqlite-dev tk-dev xz-dev expect tcl-dev
 
@@ -130,10 +130,8 @@ pyenv --version
 
 pyenv install 3.10.12
 
-pyenv virtualenv 3.10.12 hammertime-venv
+pyenv virtualenv 3.10.12 my-venv
 
-pyenv activate hammertime-venv
-
-pip install --index-url=https://artifacts.rackspace.net/artifactory/api/pypi/pypi/simple hammertime
+pyenv activate my-venv
 
 
