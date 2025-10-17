@@ -69,6 +69,24 @@ rc-update add elogind
 reboot
 
 
+### Installing cursor themes
+
+https://wiki.archlinux.org/title/Cursor_themes
+
+sudo apk add adwaita-icon-theme
+
+sudo apk add xcursor-themes
+
+nano /etc/polkit-1/rules.d/50-reboot-shutdown.rules
+
+polkit.addRule(function(action, subject) {
+  if (action.id.indexOf("org.freedesktop.consolekit.system") == 0
+    &&  subject.isInGroup("wheel")) {
+    return polkit.Result.YES;
+  }
+});
+
+
 ### Installing virtualbox guest additions
 
 https://wiki.alpinelinux.org/wiki/VirtualBox_shared_folders
