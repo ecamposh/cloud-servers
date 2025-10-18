@@ -129,7 +129,7 @@ chsh username
 
 Now enter the path for the shell you want to use (e.g /bin/zsh) and press Enter to confirm this change. The shell should exist in /etc/shells.
 
-apk add --no-cache firefox xfce4-goodies xterm terminator alacritty konsole gnome-terminal
+apk add --no-cache firefox xterm terminator alacritty konsole gnome-terminal
 
 
 ### Installing pyenv
