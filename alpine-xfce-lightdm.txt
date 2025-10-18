@@ -11,6 +11,7 @@ apk upgrade
 
 https://pkgs.alpinelinux.org/packages
 
+https://wiki.alpinelinux.org/wiki/Display_manager
 https://wiki.alpinelinux.org/wiki/Setup-desktop
 
 The Alpine Linux script for quickly setting up a desktop is:
@@ -53,8 +54,9 @@ startx
 
 ### Allow Users to shut down and reboot
 
-https://wiki.alpinelinux.org/wiki/Elogind
 https://wiki.alpinelinux.org/wiki/Polkit
+https://wiki.alpinelinux.org/wiki/Elogind
+https://wiki.alpinelinux.org/wiki/Seatd
 
 apk add elogind polkit-elogind
 
@@ -72,6 +74,7 @@ reboot
 ### Installing cursor themes
 
 https://wiki.archlinux.org/title/Cursor_themes
+
 
 sudo apk add adwaita-icon-theme
 
