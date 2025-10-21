@@ -1,0 +1,35 @@
+### Alpine Linux nginx configuration
+
+apk add nginx
+
+rc-update add nginx default
+
+rc-service nginx start
+
+vi /etc/nginx/nginx.conf
+
+https://raw.githubusercontent.com/ecamposh/cloud-servers/main/nginx.conf
+
+mkdir -p /var/www/html
+
+echo "<h1>Hello, Nginx on Alpine!</h1>" > /var/www/html/index.html
+
+chown -R nginx:nginx /var/www/html
+
+chmod -R 755 /var/www/html
+
+nginx -t
+
+rc-service nginx reload
+
+curl http://localhost
+
+apk add iptables
+
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+
+Default document root: Alpine’s default Nginx document root is /var/www/html, but you can change it in the root directive in the configuration.
+
+Log files: Check logs for debugging at /var/log/nginx/access.log and /var/log/nginx/error.log.
+
+
