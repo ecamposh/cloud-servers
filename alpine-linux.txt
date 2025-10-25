@@ -53,7 +53,8 @@ setup-cloud-init
 poweroff
 
 
-
+https://gist.github.com/runlevel5/5064c1121e5b41d9a246b587f602bd91
+https://wiki.alpinelinux.org/wiki/K8s
 https://wiki.alpinelinux.org/wiki/K8s_with_cloud-init
 https://github.com/red-lichtie/alpine-cloud-init
 https://twdev.blog/2023/11/alpine_cloudinit/
