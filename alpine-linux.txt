@@ -1,3 +1,7 @@
+## https://dl-cdn.alpinelinux.org/alpine/v3.22/releases/x86_64/alpine-virt-3.22.2-x86_64.iso
+
+## Step by Step initial setup answers
+
 root
 
 setup-alpine
@@ -53,15 +57,16 @@ setup-cloud-init
 poweroff
 
 
+https://wiki.creatica.org/cgi-bin/wiki.pl/How_to_create_alpine_linux_cloud_image
+https://itsfoss.com/alpine-linux-virtualbox/
+
 https://gist.github.com/runlevel5/5064c1121e5b41d9a246b587f602bd91
 https://wiki.alpinelinux.org/wiki/K8s
 https://wiki.alpinelinux.org/wiki/K8s_with_cloud-init
 https://github.com/red-lichtie/alpine-cloud-init
 https://twdev.blog/2023/11/alpine_cloudinit/
 https://timmydouglas.com/2019/12/29/cloud-init.html
-https://wiki.creatica.org/cgi-bin/wiki.pl/How_to_create_alpine_linux_cloud_image
 https://wiki.archlinux.org/title/Doas
-https://itsfoss.com/alpine-linux-virtualbox/
 https://www.mirantis.com/cloud-native-concepts/understanding-openstack/how-to-work-with-images-in-openstack/
 https://wiki.archlinux.org/title/Cloud-init
 https://forum.proxmox.com/threads/cloud-init-and-disable_root.48569/
@@ -79,7 +84,5 @@ https://doc.opencraft.com/howto-upload-images-to-openstack/
 https://docs.alpinelinux.org/user-handbook/0.1a/Working/post-install.html
 https://docs.openstack.org/nova/rocky/user/metadata-service.html
 https://cloudspinx.com/fix-cloud-init-cannot-access-metadata-on-openstack/
-
-
 
 
