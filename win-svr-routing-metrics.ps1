@@ -26,7 +26,7 @@ Get-NetRoute
 
 Get-NetIPConfiguration​
 
-Get-NetIPInterface -AddressFamily IPv4 | Select-Object ifIndex, InterfaceAlias, ConnectionState, InterfaceMetric, AutomaticMetric | Format-Table
+Get-NetIPInterface -AddressFamily IPv4 | Select-Object ifIndex, InterfaceAlias, ConnectionState, InterfaceMetric, AutomaticMetric, WeakHostSend, WeakHostReceive | Format-Table
 
 
 Get-NetIPAddress -AddressFamily IPv4 |
