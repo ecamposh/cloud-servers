@@ -143,3 +143,51 @@ At this point:
 Networking is “factory default” (DHCP-based)
 
 
+## Installing Web-Server (IIS) server role
+
+Enable-PSRemoting -Force
+
+Install-WindowsFeature -Name Web-Server -IncludeManagementTools
+
+Enable-NetFirewallRule -Name "WINRM-HTTP-In-TCP"
+
+Enable-NetFirewallRule -Name "WINRM-HTTPS-In-TCP"
+
+Get-Service WinRM
+
+Get-ChildItem WSMan:\localhost\Listener
+
+Test-WSMan localhost
+
+Test-NetConnection -ComputerName localhost -Port 5985
+Test-NetConnection -ComputerName localhost -Port 80
+Test-NetConnection -ComputerName localhost -Port 3389
+
+Get-NetTCPConnection -State Listen | Where-Object {
+    $_.LocalPort -in 5985,5986,80,443,3389
+} | Select-Object LocalAddress,LocalPort,OwningProcess
+
+Get-NetFirewallRule | Where-Object {$_.Enabled -eq "True"}
+
+Get-NetConnectionProfile
+
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
+New-NetFirewallRule -DisplayName "Allow ICMPv4" -Protocol ICMPv4 -IcmpType 8 -Direction Inbound -Action Allow
+
+New-NetFirewallRule -DisplayName "Allow HTTP" -Protocol TCP -LocalPort 80 -Direction Inbound -Action Allow
+
+New-NetFirewallRule -DisplayName "Allow HTTPS" -Protocol TCP -LocalPort 443 -Direction Inbound -Action Allow
+
+New-NetFirewallRule -DisplayName "Allow HTTPS" `
+  -Direction Inbound `
+  -Protocol TCP `
+  -LocalPort 443 `
+  -Profile Domain,Private `
+  -Action Allow
+
+Get-NetFirewallRule -DisplayName "Allow HTTPS"
+
+New-NetFirewallRule -DisplayName "Allow All" -Direction Inbound -Action Allow -Protocol Any
+
+
