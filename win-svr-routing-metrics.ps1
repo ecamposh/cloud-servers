@@ -20,9 +20,22 @@ Same symptoms as Linux:
 Mitigation Options
 ​
 1. Adjust Interface Metrics
+
 ​
+Get-NetIPInterface | Select-Object ifIndex, InterfaceAlias, AddressFamily, ConnectionState | Format-Table
+
+
+Get-NetIPAddress -AddressFamily IPv4 |
+Where-Object {
+    $_.IPAddress -notlike '127.*' -and
+    $_.IPAddress -notlike '169.254.*'
+} |
+Select-Object IPAddress, InterfaceAlias, InterfaceIndex | Format-Table
+
+
 C:\> Set-NetIPInterface -InterfaceAlias "Ethernet1" -InterfaceMetric 10
 C:\> Set-NetIPInterface -InterfaceAlias "Ethernet2" -InterfaceMetric 20
+
 ​
 - Helps prioritize interfaces
 - Does not guarantee symmetric routing
