@@ -22,7 +22,10 @@ Mitigation Options
 ​
 1. Adjust Interface Metrics
 
-​
+Get-NetRoute
+
+Get-NetIPConfiguration​
+
 Get-NetIPInterface | Select-Object ifIndex, InterfaceAlias, AddressFamily, ConnectionState | Format-Table
 
 
@@ -34,8 +37,8 @@ Where-Object {
 Select-Object IPAddress, InterfaceAlias, InterfaceIndex | Format-Table
 
 
-C:\> Set-NetIPInterface -InterfaceAlias "Ethernet1" -InterfaceMetric 10
-C:\> Set-NetIPInterface -InterfaceAlias "Ethernet2" -InterfaceMetric 20
+Set-NetIPInterface -InterfaceAlias "Ethernet1" -InterfaceMetric 10
+Set-NetIPInterface -InterfaceAlias "Ethernet2" -InterfaceMetric 20
 
 ​
 - Helps prioritize interfaces
@@ -43,9 +46,46 @@ C:\> Set-NetIPInterface -InterfaceAlias "Ethernet2" -InterfaceMetric 20
 
 2. Keep gateway only on primary NIC:
 
-Set-NetIPConfiguration -InterfaceAlias "Ethernet1" -IPv4DefaultGateway $null
-Set-NetIPConfiguration -InterfaceAlias "Ethernet2" -IPv4DefaultGateway $null
-Set-NetIPConfiguration -InterfaceAlias "Ethernet3" -IPv4DefaultGateway $null
+Remove the default gateway (route) from that interface
+
+Remove-NetRoute -DestinationPrefix 0.0.0.0/0 -InterfaceAlias "Ethernet1" -Confirm:$false
+
+Why this works
+
+In Windows:
+
+The “default gateway” is just a route:
+
+0.0.0.0/0 → next hop
+
+So:
+
+Removing the gateway = removing that route
+
+Safer version (if multiple routes exist)
+
+If there are multiple default routes:
+
+Get-NetRoute -DestinationPrefix 0.0.0.0/0 -InterfaceAlias "Ethernet1" | Remove-NetRoute -Confirm:$false
+
+Verify
+
+Get-NetRoute -DestinationPrefix 0.0.0.0/0
+
+You should now see:
+
+NO default route for Ethernet1
+
+Alternative (rebuild cleanly)
+
+If you want to fully reset the interface:
+
+Remove-NetIPAddress -InterfaceAlias "Ethernet1" -Confirm:$false
+
+Then re-add IP without gateway:
+
+New-NetIPAddress -InterfaceAlias "Ethernet1" -IPAddress 10.10.0.174 -PrefixLength 24
+
 ​
 3. Strong Host Model Configuration
 ​
