@@ -94,12 +94,20 @@ Set-NetIPInterface -InterfaceAlias "Ethernet1" -WeakHostReceive Disabled
 ​
 - Improves interface-specific behavior
 ​
-4. Static Routes
+4. Static Routes (if needed)
 ​
 C:\> New-NetRoute -DestinationPrefix 0.0.0.0/0 -InterfaceAlias "Ethernet2" -NextHop <gateway>
 
-5. Test per interface
-Test-NetConnection <destination> -SourceAddress <IP>
+5. Flush everything
+
+ipconfig /release
+ipconfig /renew
+ipconfig /flushdns
+
+6. Test per interface
+ping -S <Fixed_IP> <destination>
+
+ping -S 10.10.1.30 8.8.8.8
 
 
 ###### Reset the whole Windows Server network configuration
@@ -147,10 +155,8 @@ Networking is “factory default” (DHCP-based)
 
 Enable-PSRemoting -Force
 
-Install-WindowsFeature -Name Web-Server -IncludeManagementTools
-
+# If needed to manually enable
 Enable-NetFirewallRule -Name "WINRM-HTTP-In-TCP"
-
 Enable-NetFirewallRule -Name "WINRM-HTTPS-In-TCP"
 
 Get-Service WinRM
@@ -158,6 +164,14 @@ Get-Service WinRM
 Get-ChildItem WSMan:\localhost\Listener
 
 Test-WSMan localhost
+
+Install-WindowsFeature -Name Web-Server -IncludeManagementTools
+
+Get-WindowsFeature -Name Web-Server
+
+Get-Service -Name W3SVC
+
+Get-NetTCPConnection -State Listen
 
 Test-NetConnection -ComputerName localhost -Port 5985
 Test-NetConnection -ComputerName localhost -Port 80
