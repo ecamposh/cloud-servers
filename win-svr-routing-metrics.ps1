@@ -226,9 +226,9 @@ openstack port set <PORT_ID> \
 
 2) Add secondary IPs in Windows Server
 
-New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.10.0.243 -PrefixLength 24
-New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.10.0.57 -PrefixLength 24
-New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.10.0.231 -PrefixLength 24
+New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.10.0.243 -PrefixLength 32
+New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.10.0.57 -PrefixLength 32
+New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.10.0.231 -PrefixLength 32
 
 
 3) Verify IPs
