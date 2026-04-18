@@ -205,3 +205,51 @@ Get-NetFirewallRule -DisplayName "Allow HTTPS"
 New-NetFirewallRule -DisplayName "Allow All" -Direction Inbound -Action Allow -Protocol Any
 
 
+
+### Setting OpenStack Flex VM with multiple Floating IPs with Allowed-Address-Pairs method
+
+1) Create Ports
+
+openstack port list --server <VM_NAME>
+
+openstack port create \
+  --network <PRIVATE_NET> \
+  --fixed-ip subnet=<SUBNET_ID>,ip-address=10.10.0.209 \
+  <port_name>
+
+2) Add allowed address pairs
+
+openstack port set <PORT_ID> \
+  --allowed-address ip-address=10.10.0.243 \
+  --allowed-address ip-address=10.10.0.57 \
+  --allowed-address ip-address=10.10.0.231
+
+2) Add secondary IPs in Windows Server
+
+New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.10.0.243 -PrefixLength 24
+New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.10.0.57 -PrefixLength 24
+New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.10.0.231 -PrefixLength 24
+
+
+3) Verify IPs
+
+Get-NetIPAddress -InterfaceAlias "Ethernet0"
+
+4) Associate Floating IPs
+
+openstack floating ip set <FIP1> --port <PORT_ID> --fixed-ip-address 10.10.0.209
+openstack floating ip set <FIP2> --port <PORT_ID> --fixed-ip-address 10.10.0.243
+openstack floating ip set <FIP3> --port <PORT_ID> --fixed-ip-address 10.10.0.57
+openstack floating ip set <FIP4> --port <PORT_ID> --fixed-ip-address 10.10.0.231
+
+5) Windows Defender Firewall configuration
+
+New-NetFirewallRule -DisplayName "Allow ICMP" -Protocol ICMPv4 -IcmpType 8 -Direction Inbound -Action Allow
+New-NetFirewallRule -DisplayName "Allow HTTP" -Protocol TCP -LocalPort 80 -Direction Inbound -Action Allow
+New-NetFirewallRule -DisplayName "Allow HTTPS" -Protocol TCP -LocalPort 443 -Direction Inbound -Action Allow
+
+6) Test configuration
+
+Test-NetConnection <FIP> -Port 443
+
+
