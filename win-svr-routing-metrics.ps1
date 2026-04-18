@@ -229,6 +229,11 @@ openstack port set <PORT_ID> \
 New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.10.0.243 -PrefixLength 32
 New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.10.0.57 -PrefixLength 32
 New-NetIPAddress -InterfaceAlias "Ethernet0" -IPAddress 10.10.0.231 -PrefixLength 32
+New-NetIPAddress `
+  -InterfaceAlias "Ethernet0" `
+  -IPAddress 10.10.0.209 `
+  -PrefixLength 24 `
+  -DefaultGateway 10.10.0.1
 
 
 3) Verify IPs
