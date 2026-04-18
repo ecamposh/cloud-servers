@@ -258,3 +258,67 @@ New-NetFirewallRule -DisplayName "Allow HTTPS" -Protocol TCP -LocalPort 443 -Dir
 Test-NetConnection <FIP> -Port 443
 
 
+
+###### Troubleshooting
+
+Adapter not in permissible state
+
+That error usually means:
+
+the NIC is not in a state where Windows can apply that IP/gateway change
+
+It does not usually mean you need another adapter.
+
+Most common causes
+
+The adapter is:
+
+disabled
+disconnected
+not bound to IPv4
+managed by DHCP in a conflicting way
+being targeted with the wrong alias/index
+What to check
+
+Run these first:
+
+Get-NetAdapter
+Get-NetIPInterface -AddressFamily IPv4
+Get-NetAdapterBinding -Name "*" -ComponentID ms_tcpip
+
+What you want to see:
+
+adapter Status = Up
+IPv4 binding enabled
+correct adapter name
+Fix sequence
+
+Assume the adapter is called Ethernet.
+
+First make sure it is enabled:
+
+Enable-NetAdapter -Name "Ethernet" -Confirm:$false
+
+If it is still not usable, bounce it:
+
+Disable-NetAdapter -Name "Ethernet" -Confirm:$false
+Enable-NetAdapter -Name "Ethernet" -Confirm:$false
+
+Make sure IPv4 is enabled on it:
+
+Enable-NetAdapterBinding -Name "Ethernet" -ComponentID ms_tcpip
+
+If DHCP is active and you want a static config, disable DHCP first:
+
+Set-NetIPInterface -InterfaceAlias "Ethernet" -Dhcp Disabled
+
+Then add the primary IP and gateway:
+
+New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress 10.10.0.209 -PrefixLength 24 -DefaultGateway 10.10.0.1
+
+Then add the secondary IPs without gateway:
+
+New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress 10.10.0.243 -PrefixLength 32
+New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress 10.10.0.57 -PrefixLength 32
+New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress 10.10.0.231 -PrefixLength 32
+
