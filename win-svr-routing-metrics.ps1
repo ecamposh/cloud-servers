@@ -228,7 +228,7 @@ openstack port set <PORT_ID> \
   --allowed-address ip-address=10.10.0.231
 
 
-3) Dsiable DHCP service on the Net Adapter
+3) Disable DHCP service on the Net Adapter
 
 Set-NetIPInterface -InterfaceAlias "Ethernet" -Dhcp Disabled
 
