@@ -1,4 +1,5 @@
-### This is to overcome the error
+### This is to overcome the error.
+### Remove all other '.repo' files.
 # Determining fastest mirrors
 # http://vault.centos.org/6.8/os/x86_64/repodata/repomd.xml: [Errno 14] problem making ssl connection
 # Trying other mirror.
