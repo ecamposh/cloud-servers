@@ -1,6 +1,6 @@
 ### This is to overcome the error
 # Determining fastest mirrors
-# http://vault.centos.org/6.10/os/x86_64/repodata/repomd.xml: [Errno 14] problem making ssl connection
+# http://vault.centos.org/6.5/os/x86_64/repodata/repomd.xml: [Errno 14] problem making ssl connection
 # Trying other mirror.
 # Error: Cannot retrieve repository metadata (repomd.xml) for repository: base. Please verify its path and try again
 
